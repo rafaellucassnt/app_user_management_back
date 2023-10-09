@@ -1,0 +1,34 @@
+{
+    "name": "ex_user_management_back",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "start": "node src/app.js",
+        "dev": "nodemon src/app.js",
+        "dist": "babel src -d dist",
+        "build": "npm install && npm run dist && node build.js",
+        "start-dist": "nodemon dist/app.js",
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "test:coverage": "jest --coverage"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.3.1",
+        "express": "^4.18.2",
+        "mongodb": "^6.1.0",
+        "mongoose": "^7.5.3"
+    },
+    "devDependencies": {
+        "jest": "^29.7.0",
+        "supertest": "^6.3.3",
+        "@babel/cli": "^7.21.5",
+        "@babel/core": "^7.22.1",
+        "@babel/preset-env": "^7.22.4",
+        "nodemon": "^2.0.22"
+    }
+}
