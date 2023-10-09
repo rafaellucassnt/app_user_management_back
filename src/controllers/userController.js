@@ -9,6 +9,7 @@ function isObjectEmpty(obj) {
 exports.getAllUsers = async (req, res) => {
     try {
         const users = await User.find();
+        res.setHeader('X-Total-Count', users.length);
         res.status(200).json(users);
     } catch (error) {
         res.status(500).json({ error: 'Erro Interno do Servidor' });

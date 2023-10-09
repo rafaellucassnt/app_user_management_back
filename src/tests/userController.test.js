@@ -22,12 +22,22 @@ describe('userController', () => {
 
     describe('getAllUsers', () => {
         it('deve retornar uma lista de usuários', async () => {
-            User.find = jest.fn().mockResolvedValue(['user1', 'user2']);
+            const users = ['user1', 'user2'];
+            User.find = jest.fn().mockResolvedValue(users);
+
+            const mockSetHeader = jest.fn();
+            const mockResponse = {
+                status: jest.fn().mockReturnThis(),
+                json: jest.fn(),
+                setHeader: mockSetHeader,
+            };
 
             await getAllUsers(mockRequest, mockResponse);
 
             expect(mockResponse.status).toHaveBeenCalledWith(200);
-            expect(mockResponse.json).toHaveBeenCalledWith(['user1', 'user2']);
+            expect(mockResponse.json).toHaveBeenCalledWith(users);
+
+            expect(mockSetHeader).toHaveBeenCalledWith('X-Total-Count', users.length);
         });
 
         it('deve lidar com erros de busca de usuários', async () => {

@@ -9,12 +9,17 @@ const PORT = 3000;
 app.use(express.json());
 
 const MONGO_DB_URI = process.env.MONGO_DB;
+const URL_BASE_URI = process.env.URL_BASE;
+
 mongoose.connect(MONGO_DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
 
-app.use(cors());
+app.use(cors({
+    origin: URL_BASE_URI, // Substitua pelo domínio real do seu aplicativo React Admin
+    exposedHeaders: ['X-Total-Count'], // Declare o cabeçalho a ser exposto, se necessário
+}));
 
 app.use(express.json());
 
